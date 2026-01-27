@@ -4,6 +4,7 @@ type Offer = {
   offer_title: string;
   shop_name: string;
   area: string;
+  
 }
 
 export default function OfferList({ offers }: { offers: any[] }) {
@@ -24,16 +25,17 @@ return (
       </h2>
 
       <div className="space-y-4">
-        {offers.map((offer) => (
-          <OfferCard
-  id={offer.offer_id}
-  shopName={offer.shop_name}
-  title={offer.offer_title}
-  location={offer.area}
-  validity={formatValidity(offer.valid_till)}
-  image="" // placeholder for now
-/>
-        ))}
+        {offers.map((offer: any) => (
+  <OfferCard
+    key={offer.offer_id}   // 👈 REQUIRED
+    id={offer.offer_id}
+    shopName={offer.shop_name}
+    title={offer.offer_title}
+    location={offer.area}
+    validity={`Till ${offer.valid_till}`}
+    image={offer.shop_image_url}
+  />
+))}
       </div>
     </section>
   );

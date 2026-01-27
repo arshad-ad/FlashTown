@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import HomeClient from "@/components/HomeClient";
+import { formatDateISO } from "@/app/lib/date";
 
 import { getOffers, getShops, getCategories } from "@/app/lib/sheets";
 import { joinOffersWithShops } from "@/app/lib/joinData";
@@ -14,6 +15,7 @@ export default async function Home() {
   ]);
 
   const enrichedOffers = joinOffersWithShops(offers, shops);
+  
 
   return (
     <main className="min-h-screen bg-white">
