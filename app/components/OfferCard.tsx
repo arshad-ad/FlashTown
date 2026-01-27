@@ -2,25 +2,32 @@ import { Phone, Navigation } from 'lucide-react';
 import Image from 'next/image';
 
 interface OfferCardProps {
-    id: string;
-    shopName: string;
-    title: string;
-    image: string; // Ideally a URL
-    location: string;
-    validity: string;
+  shopName: string;
+  title: string;
+  image?: string;
+  location: string;
+  validity: string;
 }
 
-export default function OfferCard({ shopName, title, location, validity }: OfferCardProps) {
+export default function OfferCard({ shopName, title, location, validity,image }: OfferCardProps) {
+    console.log('image from offercard :',image)
     return (
         <div className="bg-white border border-gray-100 rounded-xl p-3 flex gap-4 shadow-sm">
             {/* Image Placeholder */}
-            <div className="w-20 h-20 bg-gray-100 rounded-lg shrink-0 overflow-hidden relative">
-                {/* In a real app, use next/image here. Using a div placeholder for now as per "Shop image placeholder (square)" requirement, 
-            but the prompt asks for "Shop image placeholder". I'll add a subtle icon or text. */}
-                <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs">
-                    IMG
-                </div>
-            </div>
+            <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden relative">
+  {image ? (
+    <Image
+      src={image}
+      alt={shopName}
+      fill
+      className="object-cover"
+    />
+  ) : (
+    <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs">
+      IMG
+    </div>
+  )}
+</div>
 
             <div className="flex-1 flex flex-col justify-between">
                 <div>

@@ -9,6 +9,7 @@ export type Shop = {
   google_maps_url: string;
   instagram_username: string;
   is_active: string;
+  shop_image_url: string;
 };
 
 export type Offer = {
@@ -35,6 +36,7 @@ const OFFERS_URL =
 export async function getShops(): Promise<Shop[]> {
   const res = await fetch(SHOPS_URL, { cache: "no-store" });
   return res.json();
+
 }
 
 export async function getOffers(): Promise<Offer[]> {
