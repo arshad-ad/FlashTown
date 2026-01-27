@@ -1,30 +1,37 @@
 "use client";
 
 import { useState } from "react";
+import Header from "./Header";
 import CategoryChips from "./CategoryChips";
 import OfferList from "./OfferList";
-import { getActiveOffers } from "@/app/lib/offerLogic";
+import { getActiveOffers, searchOffers } from "@/app/lib/offerLogic";
 
 export default function HomeClient({ offers, categories }: any) {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const activeOffers = getActiveOffers(offers);
 
-  const filteredOffers =
+  const categoryFiltered =
     selectedCategory === "all"
       ? activeOffers
       : activeOffers.filter(
           (o: any) => o.category === selectedCategory
         );
-console.log('filteredOffers :',categories)
+
+  const visibleOffers = searchOffers(categoryFiltered, searchQuery);
+
   return (
     <>
+      <Header search={searchQuery} onSearch={setSearchQuery} />
+
       <CategoryChips
         categories={categories}
         selected={selectedCategory}
         onChange={setSelectedCategory}
       />
-      <OfferList offers={filteredOffers} />
+
+      <OfferList offers={visibleOffers} />
     </>
   );
 }

@@ -17,7 +17,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-white">
-      <Header />
+      {/* <Header /> */}
       <Hero />
 
       {/* Client-side logic lives here */}
