@@ -1,55 +1,37 @@
-# FlashTown
 
-FlashTown is a location-based local offers aggregation platform designed to help users discover **real-time offline shop offers** in their nearby towns.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-The initial focus is on **Manjeri and Malappuram**, where local shop offers are scattered across Instagram, banners, and word-of-mouth, making them hard to discover online.
+## Getting Started
 
----
+First, run the development server:
 
-## Problem Statement
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-Online platforms like Flipkart and Swiggy centralize offers digitally, but **offline local shops do not have a single discovery platform**.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-As a result:
-- Users miss nearby offers
-- Shops lose high-intent customers
-- Offers remain fragmented across social media
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
----
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Solution Overview
+## Learn More
 
-FlashTown aggregates local shop offers and presents them as **SEO-friendly, location-based web pages**, enabling users to discover active offers through simple Google searches like:
+To learn more about Next.js, take a look at the following resources:
 
-> "Manjeri clothing offers"
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Current Stage
+## Deploy on Vercel
 
-This project is being built incrementally with real-world constraints in mind.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-**Stage 1:**
-- Google Sheets used as a structured data source (MVP)
-- Manual + semi-automated data entry
-- SEO-first frontend using Next.js
-
-Later stages will migrate to a full database and automation pipeline.
-
----
-
-## Tech Stack (Planned)
-
-- Frontend: Next.js
-- Data Source (MVP): Google Sheets API
-- Backend (Later): Node.js + MongoDB
-- Automation (Later): Instagram scraping + offer detection
-- Deployment: Vercel
-
----
-
-## Project Status
-
-🚧 Under active development  
-📍 Focus area: Manjeri & Malappuram  
-🎯 Goal: Build a real-world full-stack project
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
