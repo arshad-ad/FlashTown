@@ -27,19 +27,39 @@ export type Offer = {
   status: string;
 };
 
+export type Category = {
+  category_slug: string;
+  display_name: string;
+  seo_title: string;
+  seo_description: string;
+};
+
 const SHOPS_URL =
   "https://opensheet.elk.sh/1jZrn0QgY66V0KMOH864P_cjQ0aR7uf_0L23nywuw0_c/Shops";
 
 const OFFERS_URL =
   "https://opensheet.elk.sh/1jZrn0QgY66V0KMOH864P_cjQ0aR7uf_0L23nywuw0_c/Offers";
 
+const CATEGORIES_URL =
+  "https://opensheet.elk.sh/1jZrn0QgY66V0KMOH864P_cjQ0aR7uf_0L23nywuw0_c/categories";
+
 export async function getShops(): Promise<Shop[]> {
   const res = await fetch(SHOPS_URL, { cache: "no-store" });
   return res.json();
-
 }
 
 export async function getOffers(): Promise<Offer[]> {
   const res = await fetch(OFFERS_URL, { cache: "no-store" });
   return res.json();
 }
+
+export async function getCategories() {
+  const res = await fetch(CATEGORIES_URL, { cache: "no-store" });
+  const rows = await res.json();
+
+  return rows.map((row: any) => ({
+    slug: row.category_slug,
+    name: row.display_name,
+  }));
+}
+
