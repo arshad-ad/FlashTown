@@ -16,30 +16,6 @@ export default function AddOfferPage() {
 
         {/* 2. Offer Form */}
         <div className="space-y-6">
-          {/* Shop Details */}
-          <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">
-              🏪 Shop Details
-            </h2>
-
-            <div className="space-y-4">
-              <input
-                type="text"
-                placeholder="Shop Name"
-                className="w-full px-4 py-2 rounded-lg border border-gray-200"
-              />
-              <input
-                type="text"
-                placeholder="Area / Location"
-                className="w-full px-4 py-2 rounded-lg border border-gray-200"
-              />
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                className="w-full px-4 py-2 rounded-lg border border-gray-200"
-              />
-            </div>
-          </section>
 
           {/* Offer Details */}
           <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">

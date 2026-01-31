@@ -92,7 +92,7 @@ export default function ForBusinessPage() {
                     </div>
 
                     <Link
-                        href="/shop"
+                        href="/shop/setup"
                         className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-lg transition-colors"
                     >
                         Continue with Phone

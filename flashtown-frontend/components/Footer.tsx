@@ -11,7 +11,7 @@ export default function Footer() {
                         Are you a shop owner?
                     </p>
                     <Link
-  href="/shop"
+  href="/for-business"
   className="bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-lg w-full block active:scale-95 transition-transform"
 >
   Add your offer for free
