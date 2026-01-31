@@ -1,4 +1,5 @@
 import { Phone } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -9,9 +10,12 @@ export default function Footer() {
                     <p className="text-blue-900 font-medium text-sm mb-2">
                         Are you a shop owner?
                     </p>
-                    <button className="bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-lg w-full active:scale-95 transition-transform">
-                        Add your offer for free
-                    </button>
+                    <Link
+  href="/shop"
+  className="bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-lg w-full block active:scale-95 transition-transform"
+>
+  Add your offer for free
+</Link>
                 </div>
 
                 <div className="flex justify-center gap-6 text-sm text-gray-500 mb-6">
