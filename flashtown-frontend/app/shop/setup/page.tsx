@@ -1,105 +1,91 @@
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { createSupabaseClient } from "@/lib/supabase/client";
 
 export default function ShopSetupPage() {
-    return (
-        <div className="min-h-screen bg-gray-50 py-8 px-4">
-            <div className="max-w-md mx-auto">
-                {/* Header */}
-                <header className="mb-8 text-center">
-                    <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
-                        Setup Your Shop
-                    </h1>
-                    <p className="text-gray-500 mt-1">
-                        One-time setup to start posting offers
-                    </p>
-                </header>
+  const supabase = createSupabaseClient();
+  const router = useRouter();
 
-                {/* Setup Form */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-6">
+  const [name, setName] = useState("");
+  const [town, setTown] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
 
-                    {/* Shop Name */}
-                    <div>
-                        <label htmlFor="shopName" className="block text-sm font-medium text-gray-700 mb-1">
-                            Shop Name
-                        </label>
-                        <input
-                            type="text"
-                            id="shopName"
-                            className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
-                            placeholder="e.g. Kerala Store"
-                        />
-                    </div>
+  async function handleSubmit(e: any) {
+    e.preventDefault();
 
-                    {/* Area / Location */}
-                    <div>
-                        <label htmlFor="area" className="block text-sm font-medium text-gray-700 mb-1">
-                            Area / Location
-                        </label>
-                        <input
-                            type="text"
-                            id="area"
-                            className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
-                            placeholder="e.g. Manjeri Town"
-                        />
-                    </div>
+    const { error } = await supabase.from("shops").insert({
+      name,
+      slug: name.toLowerCase().replace(/\s+/g, "-"),
+      town,
+      category,
+      description,
+      verified: true,
+    });
 
-                    {/* Category */}
-                    <div>
-                        <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
-                            Category
-                        </label>
-                        <select
-                            id="category"
-                            className="w-full px-4 py-2 rounded-lg border border-gray-200 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
-                        >
-                            <option value="">Select Category</option>
-                            <option value="fashion">Fashion & Clothing</option>
-                            <option value="electronics">Electronics</option>
-                            <option value="grocery">Grocery & Supermarket</option>
-                            <option value="food">Restaurant & Cafe</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
+    if (error) {
+      alert("Error creating shop");
+      console.error(error);
+      return;
+    }
 
-                    {/* Phone (Read Only Mock) */}
-                    <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                            Phone Number
-                        </label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            value="+91 98765 43210"
-                            readOnly
-                            className="w-full px-4 py-2 rounded-lg border border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed"
-                        />
-                        <p className="text-xs text-gray-400 mt-1">Verified via OTP</p>
-                    </div>
+    router.push("/shop");
+  }
 
-                    {/* Description */}
-                    <div>
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-                            Shop Description (Optional)
-                        </label>
-                        <textarea
-                            id="description"
-                            rows={3}
-                            className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all resize-none"
-                            placeholder="Tell customers about your shop..."
-                        />
-                    </div>
+  return (
+    <div className="min-h-screen bg-gray-50 py-8 px-4">
+      <div className="max-w-md mx-auto">
 
-                    {/* Submit Button */}
-                    <Link
-                        href="/shop"
-                        className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-blue-600/20 transition-all transform hover:scale-[1.02] active:scale-[0.98] text-center"
-                    >
-                        Create Shop
-                    </Link>
-                </div>
-            </div>
-        </div>
-    );
+        <header className="mb-8 text-center">
+          <h1 className="text-2xl font-bold">Setup Your Shop</h1>
+          <p className="text-gray-500">One-time setup to start posting offers</p>
+        </header>
+
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white p-6 rounded-xl shadow-sm border space-y-6"
+        >
+
+          <input
+            placeholder="Shop Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg"
+          />
+
+          <input
+            placeholder="Town / Area"
+            value={town}
+            onChange={(e) => setTown(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg"
+          />
+
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg"
+          >
+            <option value="">Select Category</option>
+            <option value="Clothing">Fashion & Clothing</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Grocery">Grocery</option>
+          </select>
+
+          <textarea
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg"
+          />
+
+          <button className="w-full bg-blue-600 text-white py-3 rounded-xl">
+            Create Shop
+          </button>
+
+        </form>
+      </div>
+    </div>
+  );
 }
