@@ -3,26 +3,24 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import HomeClient from "@/components/HomeClient";
 
-import { getOffers, getShops, getCategories } from "@/app/lib/sheets";
-import { joinOffersWithShops } from "@/app/lib/joinData";
+import { getOffers } from "@/lib/queries/getOffers";
+import { getCategories } from "@/lib/queries/getCategories";
 
 export default async function Home() {
-  const [offers, shops, categories] = await Promise.all([
+  const [offers, categories] = await Promise.all([
     getOffers(),
-    getShops(),
     getCategories(),
   ]);
+  console.log("OFFERS:", offers);
 
-  const enrichedOffers = joinOffersWithShops(offers, shops);
 
   return (
     <main className="min-h-screen bg-white">
       {/* <Header /> */}
       <Hero />
 
-      {/* Client-side logic lives here */}
       <HomeClient
-        offers={enrichedOffers}
+        offers={offers}
         categories={categories}
       />
 

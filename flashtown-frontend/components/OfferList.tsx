@@ -12,12 +12,12 @@ export default function OfferList({ offers }: { offers: any[] }) {
       <div className="space-y-4">
         {offers.map((offer) => (
           <OfferCard
-            key={offer.offer_id}   // 🔥 THIS FIXES THE BUILD
-            shopName={offer.shop_name}
-            title={offer.offer_title}
-            location={offer.area}
-            validity={offer.valid_till}
-            image={offer.shop_image_url}
+            key={offer.id}
+            shopName={offer.shops?.name}
+            title={offer.title}
+            location={offer.shops?.town}
+            validity={offer.expiry_date}
+            image={offer.shops?.logo_url}
           />
         ))}
       </div>
