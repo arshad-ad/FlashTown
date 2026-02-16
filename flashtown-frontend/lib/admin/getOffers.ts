@@ -1,7 +1,7 @@
 import { createSupabaseClient } from '@/lib/supabase/client'
 
 /**
- * Fetches offers from the database.
+//  * Fetches offers from the database.
  * @param shopId Optional shop ID to filter by specific shop.
  */
 export async function getOffers(shopId?: string) {
