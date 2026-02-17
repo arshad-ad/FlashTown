@@ -1,12 +1,12 @@
-import { createSupabaseClient } from '@/lib/supabase/client'
+import { createServerSupabaseClient } from '@/lib/supabase/server'
 
 /**
-//  * Fetches offers from the database.
+ * Fetches offers from the database.
  * @param shopId Optional shop ID to filter by specific shop.
  */
 export async function getOffers(shopId?: string) {
 
-  const supabase = createSupabaseClient();
+  const supabase = createServerSupabaseClient();
 
   let query = supabase
     .from('offers')

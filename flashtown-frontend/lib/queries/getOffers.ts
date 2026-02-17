@@ -1,7 +1,7 @@
-import { createSupabaseClient } from "@/lib/supabase/client";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export async function getOffers(town?: string) {
-  const supabase = createSupabaseClient();
+  const supabase = createServerSupabaseClient();
 
   let query = supabase
     .from("offers")
