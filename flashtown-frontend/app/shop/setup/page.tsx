@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 
 export default function ShopSetupPage() {
-  // const supabase = createSupabaseClient();
+  
   const router = useRouter();
 
   const [name, setName] = useState("");
