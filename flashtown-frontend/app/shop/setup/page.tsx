@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createSupabaseClient } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 
 export default function ShopSetupPage() {
-  const supabase = createSupabaseClient();
+  // const supabase = createSupabaseClient();
   const router = useRouter();
 
   const [name, setName] = useState("");
