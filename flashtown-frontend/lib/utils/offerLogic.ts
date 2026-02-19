@@ -38,3 +38,23 @@ export function formatValidity(validTill: string) {
 
   return `Till ${till.toLocaleDateString()}`;
 }
+export function getDaysLeft(validTill: string) {
+  if (!validTill) return "";
+
+  const today = new Date();
+  const till = new Date(validTill);
+
+  // remove time part
+  today.setHours(0,0,0,0);
+  till.setHours(0,0,0,0);
+
+  const diffMs = till.getTime() - today.getTime();
+  const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+  if (days < 0) return "Expired";
+  if (days === 0) return "Ends Today";
+  if (days === 1) return "1 day left";
+
+  return `${days} days left`;
+}
+

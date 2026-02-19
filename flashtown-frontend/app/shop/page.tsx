@@ -1,9 +1,15 @@
 
-import React from 'react';
+import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { getUser } from '@/lib/auth/getUser';
 import { getShopDashboardData } from '@/lib/queries/getShopDashboard';
 
 export default async function ShopDashboardPage() {
+    const user = await getUser();
+    if (!user) {
+        redirect('/login');
+    }
+
     const { shop, offers } = await getShopDashboardData();
     const shopName = shop?.name || "Your Shop";
     const shopInitial = shopName.charAt(0).toUpperCase();
@@ -70,8 +76,8 @@ export default async function ShopDashboardPage() {
                                     <div className="flex justify-between items-start">
                                         <h4 className="font-bold text-gray-900 truncate pr-2">{offer.title}</h4>
                                         <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full ${offer.status === 'active'
-                                                ? 'bg-green-100 text-green-700'
-                                                : 'bg-gray-100 text-gray-600'
+                                            ? 'bg-green-100 text-green-700'
+                                            : 'bg-gray-100 text-gray-600'
                                             }`}>
                                             {offer.status}
                                         </span>
